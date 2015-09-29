@@ -1,4 +1,4 @@
-﻿//Expected CSV format
+﻿//Expected CSV format 
 //Username,AccountEnabled,AccountStatus,NewPass,ConfirmNewPass
 //testuser@domain.com,true,Locked,newpass1,newpass1
 
