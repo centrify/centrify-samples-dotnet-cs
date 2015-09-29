@@ -1,6 +1,4 @@
-# CentrifyAPIExamples
-
-APICodeSamples_CS:
+# CentrifyAPIExamples_CS
 
 Notes: This package contains code samples for the Centrify Identity Service Platform API's written in C#. 
 
