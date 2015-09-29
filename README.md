@@ -4,6 +4,8 @@ APICodeSamples_CS:
 
 Notes: This package contains code samples for the Centrify Identity Service Platform API's written in C#. 
 
+Samples Included:
+
 1.	Centrify_API_Interface.cs (found in the classes folder)
 a.	This code is used by every other API sample code for c#. This sample explains how to make a rest call
 2.	GetUpData.cs
