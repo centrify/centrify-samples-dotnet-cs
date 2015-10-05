@@ -68,18 +68,16 @@ namespace APICodeSamples
                     string strNewPass = (string)user.GetValue(3);
                     string strConfirmNewPass = (string)user.GetValue(4);
 
-                    string strModifyUserJSON = @"{""ID"":""" + strUuid + @""", ""enableState"":" + bDisableAccount.ToString().ToLower() + @",""state"":""" + strState + @"""}";
-                    Centrify_API_Interface centModifyUser = new Centrify_API_Interface().MakeRestCall(CentModifyUserURL, strModifyUserJSON);
+                    string strModifyUserJSON = @"{""ID"":""" + strUuid + @""", ""enableState"":" + bDisableAccount + @",""state"":""" + strState + @"""}";
                     Centrify_API_Interface centSetUser = new Centrify_API_Interface().MakeRestCall(CentSetUserURL, strModifyUserJSON);
                     var jss = new JavaScriptSerializer();
-                    Dictionary<string, dynamic> centModifyUser_Dict = jss.Deserialize<Dictionary<string, dynamic>>(centModifyUser.returnedResponse);
                     Dictionary<string, dynamic> centSetUser_Dict = jss.Deserialize<Dictionary<string, dynamic>>(centSetUser.returnedResponse);
 
-                    if (centModifyUser_Dict["success"].ToString() == "True" && centSetUser_Dict["success"].ToString() == "True")
+                    if (centSetUser_Dict["success"].ToString() == "True" && centSetUser_Dict["success"].ToString() == "True")
                     {
                         if (strNewPass != null)
                         {
-                            string strSetPassJSON = @"{""ID"":""" + strUuid + @"""ConfrimPassword"":""" + strConfirmNewPass + @""",""newPassword"":""" + strNewPass + @"""}";
+                            string strSetPassJSON = @"{""ID"":""" + strUuid + @""",""ConfrimPassword"":""" + strConfirmNewPass + @""",""newPassword"":""" + strNewPass + @"""}";
                             Centrify_API_Interface centSetPass = new Centrify_API_Interface().MakeRestCall(CentSetPassURL, strSetPassJSON);
                             Dictionary<string, dynamic> centSetPass_Dict = jss.Deserialize<Dictionary<string, dynamic>>(centSetPass.returnedResponse);
 
@@ -95,7 +93,7 @@ namespace APICodeSamples
                     }
                     else
                     {
-                        Console.WriteLine("Failed to Modify user: " + centModifyUser.returnedResponse);
+                        Console.WriteLine("Failed to Modify user: " + centSetUser.returnedResponse);
                     }
                 }
             }

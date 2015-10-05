@@ -35,7 +35,7 @@ namespace APICodeSamples
             Centrify_API_Interface centLogin = new Centrify_API_Interface().MakeRestCall(CentLoginURL, loginJSON);
 
             //A User GUID is needed to modify a user so the user will first need to be queried unless the GUID is hardcoded
-            string strQueryJSON = @"{""Script"":""select * from dsusers where SystemName = '" + UserName + @"'""}";
+            string strQueryJSON = @"{""Script"":""select * from dsusers where SystemName = '" + UserName + @"';"",""Args"":{""PageNumber"":1,""PageSize"":10000,""Limit"":10000,""SortBy"":"""",""direction"":""False"",""Caching"":-1}}";
 
             Centrify_API_Interface centQueryUser = new Centrify_API_Interface().MakeRestCall(CentQueryURL, strQueryJSON, centLogin.returnedCookie);
             var jssFindUser = new JavaScriptSerializer();
@@ -58,18 +58,16 @@ namespace APICodeSamples
 
             if (strUuid != "")
             {
-                string strModifyUserJSON = @"{""ID"":""" + strUuid + @""", ""enableState"":" + bDisableAccount.ToString().ToLower() + @",""state"":""" + strState + @"""}";
-                Centrify_API_Interface centModifyUser = new Centrify_API_Interface().MakeRestCall(CentModifyUserURL, strModifyUserJSON);
+                string strModifyUserJSON = @"{""ID"":""" + strUuid + @""", ""enableState"":" + bDisableAccount + @",""state"":""" + strState + @"""}";
                 Centrify_API_Interface centSetUser = new Centrify_API_Interface().MakeRestCall(CentSetUserURL, strModifyUserJSON);
                 var jss = new JavaScriptSerializer();
-                Dictionary<string, dynamic> centModifyUser_Dict = jss.Deserialize<Dictionary<string, dynamic>>(centModifyUser.returnedResponse);
                 Dictionary<string, dynamic> centSetUser_Dict = jss.Deserialize<Dictionary<string, dynamic>>(centSetUser.returnedResponse);
 
-                if (centModifyUser_Dict["success"].ToString() == "True" && centSetUser_Dict["success"].ToString() == "True")
+                if (centSetUser_Dict["success"].ToString() == "True")
                 {
                     if (strNewPass != null)
                     {
-                        string strSetPassJSON = @"{""ID"":""" + strUuid + @"""ConfrimPassword"":""" + strConfirmNewPass + @""",""newPassword"":""" + strNewPass + @"""}";
+                        string strSetPassJSON = @"{""ID"":""" + strUuid + @""",""ConfrimPassword"":""" + strConfirmNewPass + @""",""newPassword"":""" + strNewPass + @"""}";
                         Centrify_API_Interface centSetPass = new Centrify_API_Interface().MakeRestCall(CentSetPassURL, strSetPassJSON);
                         Dictionary<string, dynamic> centSetPass_Dict = jss.Deserialize<Dictionary<string, dynamic>>(centSetPass.returnedResponse);
 
@@ -85,7 +83,7 @@ namespace APICodeSamples
                 }
                 else
                 {
-                    Console.WriteLine("Failed to Modify user: " + centModifyUser.returnedResponse);
+                    Console.WriteLine("Failed to Modify user: " + centSetUser.returnedResponse);
                 }
             }
         }

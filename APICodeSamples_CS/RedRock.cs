@@ -23,7 +23,7 @@ namespace APICodeSamples
             string loginJSON = "{user:'" + UserName + "', password:'" + Password + "'}";
             Centrify_API_Interface centLogin = new Centrify_API_Interface().MakeRestCall(CentLoginURL, loginJSON);
 
-            string strQueryJSON = @"{""Script"":""select * from dsusers where SystemName = '" + UserName + @"'""}";
+            string strQueryJSON = @"{""Script"":""select * from dsusers where SystemName = '" + UserName + @"';"",""Args"":{""PageNumber"":1,""PageSize"":10000,""Limit"":10000,""SortBy"":"""",""direction"":""False"",""Caching"":-1}}";
 
             Centrify_API_Interface centQueryUser = new Centrify_API_Interface().MakeRestCall(CentQueryURL, strQueryJSON, centLogin.returnedCookie);
             var jssFindUser = new JavaScriptSerializer();
