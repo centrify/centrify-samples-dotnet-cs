@@ -54,7 +54,7 @@ namespace APICodeSamples
                     dynamic centFindUser_Results_Column = centFindUser_Results[0];
                     Dictionary<string, dynamic> centFindUser_Results_Row = centFindUser_Results_Column["Row"];
 
-                    strUuid = centFindUser_Results_Row["DirectoryServiceUuid"];
+                    strUuid = centFindUser_Results_Row["InternalName"];
                 }
                 else
                 {
