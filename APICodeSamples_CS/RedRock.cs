@@ -14,16 +14,12 @@ namespace APICodeSamples
         public static string CentLoginURL = "https://cloud.centrify.com/security/login";
         public static string CentQueryURL = "https://pod.centrify.com/RedRock/query";
 
-        //Hard coded as an example only. 
-        public static string UserName = "user@domain.com";
-        public static string Password = "userPass";
-
-        public void RunQuery()
+        public void RunQuery(string strUserName, string strPassword)
         {
-            string loginJSON = "{user:'" + UserName + "', password:'" + Password + "'}";
+            string loginJSON = "{user:'" + strUserName + "', password:'" + strPassword + "'}";
             Centrify_API_Interface centLogin = new Centrify_API_Interface().MakeRestCall(CentLoginURL, loginJSON);
 
-            string strQueryJSON = @"{""Script"":""select * from dsusers where SystemName = '" + UserName + @"';"",""Args"":{""PageNumber"":1,""PageSize"":10000,""Limit"":10000,""SortBy"":"""",""direction"":""False"",""Caching"":-1}}";
+            string strQueryJSON = @"{""Script"":""select * from dsusers where SystemName = '" + strUserName + @"';"",""Args"":{""PageNumber"":1,""PageSize"":10000,""Limit"":10000,""SortBy"":"""",""direction"":""False"",""Caching"":-1}}";
 
             Centrify_API_Interface centQueryUser = new Centrify_API_Interface().MakeRestCall(CentQueryURL, strQueryJSON, centLogin.returnedCookie);
             var jssFindUser = new JavaScriptSerializer();

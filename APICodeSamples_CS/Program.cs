@@ -10,11 +10,10 @@ namespace APICodeSamples
     {
         static void Main(string[] args)
         {
-            GetUpData test = new GetUpData();
-            
-            test.GetApps();
-            Console.ReadLine();
+            RedRock query = new RedRock();
 
+            query.RunQuery("user@domain.com", "userPass");
+            Console.ReadLine();
         }
     }
 }
