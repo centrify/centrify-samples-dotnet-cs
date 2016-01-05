@@ -19,7 +19,7 @@ namespace APICodeSamples
         public static string NewUserName = "newUser";
         public static string NewPassword = "newPass";
 
-        public void CreateUser()
+        public void DoCreateUser()
         {
             string loginJSON = "{user:'" + UserName + "', password:'" + Password + "'}";
             Centrify_API_Interface centLogin = new Centrify_API_Interface().MakeRestCall(CentLoginURL, loginJSON);

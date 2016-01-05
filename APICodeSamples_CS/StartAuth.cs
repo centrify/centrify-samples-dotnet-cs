@@ -21,7 +21,7 @@ namespace APICodeSamples
         public static string UserName = "user@domain.com";
         public static string Password = "userPass";
 
-        public StartAuth StartAuth()
+        public StartAuth DoStartAuth()
         {
             string strStartAuthJSON = @"{""User"":""" + UserName + @""", ""Version"":""1.0""}";
             Centrify_API_Interface centStartAuth = new Centrify_API_Interface().MakeRestCall(CentStartAuthURL, strStartAuthJSON);

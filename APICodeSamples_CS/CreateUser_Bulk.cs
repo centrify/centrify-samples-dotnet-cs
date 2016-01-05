@@ -21,7 +21,7 @@ namespace APICodeSamples
         public static string UserName = "user@domain.com";
         public static string Password = "userPass";
 
-        public void CreateUser_Bulk()
+        public void DoCreateUser_Bulk()
         {
             List<string[]> newUsers = ParseCSV(@"c:\newUsers.csv");
 

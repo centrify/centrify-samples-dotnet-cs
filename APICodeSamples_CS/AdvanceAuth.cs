@@ -15,7 +15,7 @@ namespace APICodeSamples
 
         public static string CentAdvanceAuthURL = "https://cloud.centrify.com/Security/AdvanceAuthentication";
 
-        public AdvanceAuth AdvanceAuth(string strSessionId, string strTenantId, bool bRememberMe, string strMechId, string strAction, string strSecondMechId = null, string strSecondAction = null)
+        public AdvanceAuth DoAdvanceAuth(string strSessionId, string strTenantId, bool bRememberMe, string strMechId, string strAction, string strSecondMechId = null, string strSecondAction = null)
         {
             string strAdvanceAuthJSON;
 

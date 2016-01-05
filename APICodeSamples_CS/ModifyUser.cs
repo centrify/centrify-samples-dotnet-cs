@@ -29,7 +29,7 @@ namespace APICodeSamples
 
         public string strUuid = "";
 
-        public void ModifyUser()
+        public void DoModifyUser()
         {
             string loginJSON = "{user:'" + UserName + "', password:'" + Password + "'}";
             Centrify_API_Interface centLogin = new Centrify_API_Interface().MakeRestCall(CentLoginURL, loginJSON);

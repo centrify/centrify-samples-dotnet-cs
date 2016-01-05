@@ -29,7 +29,7 @@ namespace APICodeSamples
 
         public string strUuid = "";
 
-        public void ModifyUser_Bulk()
+        public void DoModifyUser_Bulk()
         {
             List<string[]> modifyUsers = ParseCSV(@"c:\newUsers.csv");
 

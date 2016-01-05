@@ -27,6 +27,8 @@ namespace APICodeSamples
             Centrify_API_Interface centLogin = new Centrify_API_Interface().MakeRestCall(CentLoginURL, loginJSON);
             Dictionary<string, dynamic> loginData = jss.Deserialize<Dictionary<string, dynamic>>(centLogin.returnedResponse);
 
+            //To pass a specific user name if you log in as an admin.
+            //string appsJSON = "{username:'" + strUserName + "'}";
             string appsJSON = @"{""force"":""True""}";
             Centrify_API_Interface centGetApps = new Centrify_API_Interface().MakeRestCall(CentGetAppsURL, appsJSON, centLogin.returnedCookie);           
             Dictionary<string, dynamic> getAppsData = jss.Deserialize<Dictionary<string, dynamic>>(centGetApps.returnedResponse);
