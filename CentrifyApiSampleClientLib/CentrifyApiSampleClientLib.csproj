@@ -7,8 +7,8 @@
     <ProjectGuid>{1314AE11-A061-40DF-A31C-D51E7676741F}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>APICodeSamples</RootNamespace>
-    <AssemblyName>APICodeSamples</AssemblyName>
+    <RootNamespace>CentrifyApiSampleClientLib</RootNamespace>
+    <AssemblyName>CentrifyApiSampleClientLib</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <PublishUrl>publish\</PublishUrl>
