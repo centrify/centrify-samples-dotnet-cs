@@ -1,28 +1,20 @@
-# CentrifyAPIExamples_CS
+# Centrify.Samples.DotNet
 
-Notes: This package contains code samples for the Centrify Identity Service Platform API's written in C#. 
+Notes: This package contains code samples for the Centrify Identity Service Platform API's written in C#.  The solution
+Centrify.Samples.DotNet.sln (VS 2015) contains two project:
+  1. Centrify.Samples.DotNet.ApiLib - Includes a general REST client for communicating with the CIS Platform, as well as
+  a class, ApiClient, which uses the REST client to make calls to specific platform API's.
+  2. Centrify.Samples.DotNet.Client - A sample console application which utilizes the ApiLib project to authenticate a user
+  using MFA, then retrieve their assigned application list.  Can be modified to invoke any of the ApiLib functionality as well.
+ 
 
-Samples Included:
+Sample Centrify.Samples.DotNet.ApiLib Functionality Includes:
 
-1.	Centrify_API_Interface.cs (found in the classes folder)
-a.	This code is used by every other API sample code for c#. This sample explains how to make a rest call
-2.	GetUpData.cs
-a.	This code sample explains how to get a list of apps from Centrify.
-3.	RedRock.cs
-a.	This code sample explains how to do a SQL Query
-4.	CreateUser.cs
-a.	This code sample explains how to create a single user
-5.	CreateUser_Bulk.cs
-a.	This code sample explains how to create many users from a CSV file
-6.	ModifyUser.cs
-a.	This code sample explains how to modify a user account
-7.	ModifyUser_Bulk.cs
-a.	This code sample explains how to modify many user accounts from a CSV file
-8.	StartAuth.cs
-a.	This code sample explains how to do StartAuth for login and MFA
-9.	AdvanceAuth.cs
-a.	This code sample explains how to do AdvanceAuth for login and MFA
-10.	ResetAppCredsForUser.cs
-a.	This code sample explains how to update an app’s user credentials
-11.	GetAppKeyByRolw.cs
-a.	This code sample explains how to get a list of app keys associated with a specified role.
+    1. Utilizing interactive MFA to authenticate a user and retrieve a session for interacting with the platform: InteractiveLogin.cs
+    2. Issuing queries to the report system: ApiLib.ExecuteQuery()
+    3. Updating credentials on a UsernamePassword application: ApiLib.UpdateApplicationDE()
+    4. Getting assigned apps (User Portal view): ApiLib.GetUPData()
+    5. Getting assigned apps by role: ApiLib.GetRoleApps()
+    6. Creating a new CUS user: ApiLib.CreateUser()
+    7. Locking/Unlocking a CUS user: ApiLib.LockUser(), ApiLib.UnlockUser()
+   
