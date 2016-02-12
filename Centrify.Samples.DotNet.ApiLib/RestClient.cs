@@ -37,6 +37,11 @@ namespace Centrify.Samples.DotNet.ApiLib
             Endpoint = DEFAULT_ENDPOINT;
         }
 
+        public string BearerToken
+        {
+            get; set;
+        }
+
         public RestClient(string podEndpointName)
         {
             Endpoint = podEndpointName;
@@ -57,10 +62,15 @@ namespace Centrify.Samples.DotNet.ApiLib
             var request = (System.Net.HttpWebRequest)System.Net.WebRequest.Create(Endpoint + method);
 
             request.Method = "POST";
-            request.ContentLength = 0;            
+            request.ContentLength = 0;
             request.ContentType = "application/json; charset=utf-8";
             request.Headers.Add("X-CENTRIFY-NATIVE-CLIENT", "1");
             request.Timeout = 120000;
+
+            if (BearerToken != null)
+            {
+                request.Headers.Add("Authorization", "Bearer " + BearerToken);
+            }
 
             // Carry cookies from call to call
             if (Cookies == null)

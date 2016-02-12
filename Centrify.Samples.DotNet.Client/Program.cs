@@ -26,11 +26,17 @@ namespace Centrify.Samples.DotNet.Client
             // All api's require that the user first be authenticated, doing so using the sample InteractiveLogin.Authenticate
             //  supports most of the MFA mechanisms provided by CIS (Email, SMS, OTP, OATH, Phone Call, Security Question), and
             //  returns us a client which has the appropriate authentication cookies in place.
-            RestClient authenticatedRestClient = InteractiveLogin.Authenticate("https://devdog.centrify.com");
+            RestClient authenticatedRestClient = InteractiveLogin.Authenticate("https://cloud.centrify.com");
 
             // We can now use that client to perform actions as the authenticated user, the ApiClient class has a method per
             //  REST api, which uses a RestClient for communication:
             ApiClient apiClient = new ApiClient(authenticatedRestClient);
+
+            // If we wanted to convert this authenticated session into a useable bearer token for headless activity, we can get it:
+            // Console.WriteLine("Bearer token for this session: {0}", apiClient.BearerToken);
+
+            // Alternatively, if we already have a bearer token, we can use that:
+            // ApiClient apiClient = new ApiClient("https://cloud.centrify.com", ExistingBearerToken);
 
             try
             {
@@ -93,7 +99,7 @@ namespace Centrify.Samples.DotNet.Client
                 #region Update a username/password applications stashed credentials
                 // Update the credentials for my UP app...
                 // apiClient.UpdateApplicationDE("someAppKeyFromGetUPData", "newUsername", "newPassword");
-                #endregion
+                #endregion                
             }
             catch (Exception e)
             {
