@@ -17,6 +17,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -29,6 +30,44 @@ namespace Centrify.Samples.DotNet.ApiLib
         public ApiClient(RestClient authenticatedClient)
         {
             m_restClient = authenticatedClient;
+        }
+
+        public ApiClient(string endpointBase, string bearerToken)
+        {
+            m_restClient = new RestClient(endpointBase);
+            m_restClient.BearerToken = bearerToken;
+        }
+
+        public string BearerToken
+        {
+            get
+            {
+                if (m_restClient.BearerToken != null)
+                {
+                    return m_restClient.BearerToken;
+                }
+                else
+                {
+                    if (m_restClient.Cookies != null)
+                    {
+                        CookieCollection endpointCookies = m_restClient.Cookies.GetCookies(new Uri(m_restClient.Endpoint));
+                        if (endpointCookies != null)
+                        {
+                            Cookie bearerCookie = endpointCookies[".ASPXAUTH"];
+                            if (bearerCookie != null)
+                            {
+                                return bearerCookie.Value;
+                            }
+                        }
+                    }
+                }
+                return null;
+            }
+
+            set
+            {
+                m_restClient.BearerToken = value;
+            }
         }
 
         // Illustrates locking a CUS user via /cdirectoryservice/setuserstate
