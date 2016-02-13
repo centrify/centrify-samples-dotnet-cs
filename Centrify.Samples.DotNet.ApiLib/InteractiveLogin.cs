@@ -35,6 +35,13 @@ namespace Centrify.Samples.DotNet.ApiLib
         private static string MechToDescription(dynamic mech)
         {
             string mechName = mech["Name"];
+         
+            try
+            {
+                return mech["PromptSelectMech"];
+            }
+            catch { /* Doesn't support this property */ }
+                           
             switch(mechName)
             {
                 case "UP":
@@ -87,6 +94,11 @@ namespace Centrify.Samples.DotNet.ApiLib
         private static string MechToPrompt(dynamic mech)
         {
             string mechName = mech["Name"];
+            try
+            {
+                return mech["PromptMechChosen"];
+            }
+            catch { /* Doesn't support this property */ }
             switch (mechName)
             {
                 case "UP":
