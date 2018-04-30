@@ -17,4 +17,6 @@ Sample Centrify.Samples.DotNet.ApiLib Functionality Includes:
     5. Getting assigned apps by role: ApiLib.GetRoleApps()
     6. Creating a new CUS user: ApiLib.CreateUser()
     7. Locking/Unlocking a CUS user: ApiLib.LockUser(), ApiLib.UnlockUser()
+    
+    For support, please contact devsupport@centrify.com
    
